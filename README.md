@@ -19,6 +19,8 @@ Role Variables
 
 Here is the list of all variables and their default values:
 
+* ``circus_tmp_remote_path: /tmp`` - used for uploading pip requirements file
+* ``circus_pip_path: /usr/bin/pip`` - used for installing python packages
 
 
 Dependencies
