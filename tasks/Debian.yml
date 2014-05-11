@@ -1,1 +1,17 @@
 ---
+- name: Install necessary packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - libzmq-dev
+    - libevent-dev
+
+- name: Upload requirements file
+  sudo: no
+  copy: src="pip-requirements.txt"
+        dest="{{ circus_tmp_remote_path }}/pip-requirements.txt"
+        mode=0644
+
+- name: Install python packages
+  sudo: no
+  pip: executable="{{ circus_pip_path }}"
+       requirements="{{ circus_tmp_remote_path }}/pip-requirements.txt"

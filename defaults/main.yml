@@ -1,2 +1,3 @@
 ---
-
+circus_tmp_remote_path: /tmp
+circus_pip_path: /usr/bin/pip
