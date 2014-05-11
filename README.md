@@ -1,7 +1,7 @@
 avanov.circus
 ==============================
 
-Ansible role of Circus
+Ansible role for [Circus](https://circus.readthedocs.org/en/latest/)
 
 Install it with the following command:
 
