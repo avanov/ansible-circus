@@ -5,13 +5,28 @@
     - libzmq-dev
     - libevent-dev
 
+- name: Install system-wide pip
+  apt: pkg={{ item }} state=present
+  with_items:
+    - python-dev
+    - python3-dev
+    - python-pip
+  when: circus_pip_path == "/usr/bin/pip"
+
 - name: Upload requirements file
   sudo: no
   copy: src="pip-requirements.txt"
         dest="{{ circus_tmp_remote_path }}/circus-pip-requirements.txt"
         mode=0644
 
-- name: Install python packages
+- name: Install python packages (system-wide)
+  sudo: yes
+  pip: executable="{{ circus_pip_path }}"
+       requirements="{{ circus_tmp_remote_path }}/circus-pip-requirements.txt"
+  when: circus_pip_path == "/usr/bin/pip"
+
+- name: Install python packages (virtualenv)
   sudo: no
   pip: executable="{{ circus_pip_path }}"
        requirements="{{ circus_tmp_remote_path }}/circus-pip-requirements.txt"
+  when: circus_pip_path != "/usr/bin/pip"
