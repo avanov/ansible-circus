@@ -12,7 +12,9 @@ $ ansible-galaxy install avanov.circus
 Requirements
 ------------
 
-None
+At least one version of ``pip`` must be present in a target system. You can use either
+system-wide or virtualenv-specific version of pip by providing a path to the ``circus_pip_path``
+variable described below.
 
 Role Variables
 --------------
